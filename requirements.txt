@@ -1,0 +1,5 @@
+defusedxml==0.5.0
+Django==2.1.7
+djangorestframework==3.9.1
+djangorestframework-xml==1.4.0
+pytz==2018.9
