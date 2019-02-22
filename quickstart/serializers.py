@@ -6,9 +6,7 @@ from rest_framework import serializers
 
 
 class ConsultaSerializer(serializers.Serializer):
-
     dni = serializers.IntegerField()
-
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -32,8 +30,24 @@ class EstudianteSerializer(serializers.ModelSerializer):
             'updated_at')
 
 
-class PagosSerializer(serializers.ModelSerializer):
+
+
+
+class CursoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Pagos
+        model = Curso
         fields = (
-            'id', 'estudiante', 'dni', 'importe', 'created_at', 'updated_at')
+            'id', 'nombre', 'created_at', 'updated_at')
+class NotasCursoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NotasCurso
+        fields = (
+            'id', 'estudiante', 'curso', 'nota', 'created_at', 'updated_at')
+class ConsultaNotasCursoSerializer(serializers.ModelSerializer):
+    curso = CursoSerializer(read_only=True)
+    estudiante = EstudianteSerializer(read_only=True)
+    class Meta:
+        model = NotasCurso
+        fields = (
+            'id', 'estudiante', 'curso', 'nota', 'created_at', 'updated_at')
+
